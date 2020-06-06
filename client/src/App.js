@@ -6,6 +6,7 @@ import  { BrowserRouter as Router, Route } from 'react-router-dom';
 import ConfirmRouteContainer from './containers/ConfirmRouteContainer';
 import ResultsContainer from './containers/ResultsContainer';
 import SearchContainer from './containers/SearchContainer';
+import Background from './images/Background.jpg';
 
 function App() {
   return (
