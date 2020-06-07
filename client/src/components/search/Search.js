@@ -10,43 +10,55 @@ class Search extends Component {
 }
 
 handleFormSubmit = (e) => {
+  e.preventDefault()  
+}
+
+handleChangeStart = (e) => {
+  this.setState({
+      startingLocation: e.target.value,
+  })
+}
+
+handleChangeDestination = (e, {value: destination}) => {
+  this.setState({
+      destination
+  })
+}
+
+handleStartSearch = (e) => {
   e.preventDefault()
-  console.log(this.state)
+  e.stopPropagation()
+  this.props.actions.fetchStartingLocation(this.state.startingLocation)
 }
 
-handleChangeStart = ({value: startingLocation}) => {
-  this.setState({
-    startingLocation
-  })
-}
-
-handleChangeDestination = ({value: destination}) => {
-  this.setState({
-    destination
-  })
-}
-
-handleStartSearch = () => {
-  console.log(this.state.startingLocation)
-}
-
-handleDestinationSearch = () => {
+handleDestinationSearch = (e) => {
+  e.preventDefault()
+  e.stopPropagation()
   console.log(this.state.destination)
 }
 
-  render() {
-    return (
-      <Card>
-        <SearchInput label="Starting Location..." onChange={this.handleChangeStart} onClick={this.handleStartSearch}/>
-        <label="Starting Location..." onChange={this.handleChangeStart}/>
+handleUpdateAddress = (e) => {
+  this.setState({
+      startingLocation: e.currentTarget.innerText,
+  })
+}
+
+render() {
+  return (
+    <Card >
+      <SearchInput label="Starting Location..." 
+        suggestedLocations={this.props.suggestedStartingLocations}
+        onChange={this.handleChangeStart} 
+        onSubmit={this.handleStartSearch}
+        handleUpdateAddress={this.handleUpdateAddress}/>
         <br/> 
         <br/>
         <SearchInput label="Destination..." onChange={this.handleChangeDestination} onClick={this.handleDestinationSearch}/> 
         <br/>
         <br/> 
         <Button buttonTitle="Submit" onClick={this.handleFormSubmit}/>
-      </Card>
-    );
+    </ Card >
+    )
   }
 }
 
