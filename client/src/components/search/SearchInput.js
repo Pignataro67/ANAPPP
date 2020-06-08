@@ -16,6 +16,15 @@ class SearchInput extends Component{
         this.addSuggestedLocationsToState(this.props.suggestedLocations)
       }
     }
+
+    render() {
+      return (
+        <form onSubmit={this.props.onSubmit}>
+          <Dropdown onSearchChange={this.props.onChange} onChange={this.handleDropdownChange} placeholder={this.props.label} fluid search selection options={this.state.suggestedLocations} open={this.state.isDropdownOpen} />
+          <input type="submit"/>
+          </form>
+        )
+    }
 }
 
 export default SearchInput;
