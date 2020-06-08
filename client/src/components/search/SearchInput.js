@@ -10,6 +10,12 @@ class SearchInput extends Component{
         suggestedLocations: []
       }
     }
+
+    componentDidUpdate(prevProps){
+      if(prevProps.suggestedLocations !== this.props.suggestedLocations){
+        this.addSuggestedLocationsToState(this.props.suggestedLocations)
+      }
+    }
 }
 
 export default SearchInput;
